@@ -4,48 +4,56 @@ import CoreData
 struct Menu: View {
     @Environment(\.managedObjectContext) private var viewContext
 
-    // Fetch all Dish objects from Core Data
-    @FetchRequest(sortDescriptors: []) private var dishes: FetchedResults<Dish>
+    @State private var searchText = "" // Step 1: State variable for search text
 
+    // FetchRequest for Dish entities
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(key: "title", ascending: true, selector: #selector(NSString.localizedStandardCompare(_:)))],
+        predicate: NSPredicate(value: true), // Initially, we want all dishes
+        animation: .default
+    ) private var dishes: FetchedResults<Dish>
+    
     var body: some View {
         VStack {
             Text("Little Lemon Restaurant")
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .padding(.top, 20)
-
+            
             Text("Chicago")
                 .font(.title2)
                 .foregroundColor(.gray)
                 .padding(.top, 5)
-
+            
             Text("Enjoy fresh and delicious meals at the heart of the city.")
                 .font(.body)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 20)
                 .padding(.top, 10)
+            
+            Text("Menu")
+                .font(.largeTitle)
+
+            TextField("Search menu", text: $searchText)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
+                .onChange(of: searchText) { _ in
+                    updatePredicate()
+                }
 
             List {
-                ForEach(dishes) { dish in
+                ForEach(dishes.filter { dish in
+                    searchText.isEmpty || (dish.title?.localizedStandardContains(searchText) ?? false)
+                }, id: \.self) { dish in
                     HStack {
-                        Text("\(dish.title ?? "Unknown") - $\(dish.price ?? "0.00")")
-                            .font(.headline)
-                            .foregroundColor(.black)
-
+                        Text("\(dish.title ?? "Unknown") - \(dish.price ?? "")")
                         Spacer()
-
-                        if let imageUrl = dish.image, let url = URL(string: imageUrl) {
-                            AsyncImage(url: url) { image in
-                                image.resizable()
-                                    .scaledToFit()
-                                    .frame(width: 250, height: 250)
-                                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                            } placeholder: {
-                                ProgressView()
-                            }
-                        }
+                        AsyncImage(url: URL(string: dish.image ?? ""))
+                            .scaledToFit()
+                            .frame(width: 120, height: 80)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
                     }
-                    .padding(.vertical, 5)
+                    .padding()
                 }
             }
         }
@@ -103,7 +111,12 @@ struct Menu: View {
 
         task.resume()
     }
-
+    
+    // Function to build predicates
+    private func updatePredicate() {
+        // This function can be used to manage predicate changes if necessary
+        // Currently, we're filtering directly in the ForEach
+    }
 }
 
 #Preview {
