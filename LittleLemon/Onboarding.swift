@@ -1,11 +1,11 @@
 import SwiftUI
 
 struct Onboarding: View {
-    @State private var firstName: String = ""
-    @State private var lastName: String = ""
-    @State private var email: String = ""
+    @State private var firstName: String = UserDefaults.standard.string(forKey: "firstName") ?? ""
+    @State private var lastName: String = UserDefaults.standard.string(forKey: "lastName") ?? ""
+    @State private var email: String = UserDefaults.standard.string(forKey: "email") ?? ""
     @State private var isLoggedIn: Bool = false
-    @State private var currentPage: Int = 0 // Track the current page
+    @State private var currentPage: Int = 0
 
     var body: some View {
         NavigationView {

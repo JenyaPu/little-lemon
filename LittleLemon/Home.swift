@@ -17,7 +17,7 @@ struct Home: View {
                     Label("Menu", systemImage: "list.dash")
                 }
 
-            ProfileView(firstName: firstName, lastName: lastName, email: email)
+            ProfileView()
                 .tabItem {
                     Label("Profile", systemImage: "person.fill")
                 }
