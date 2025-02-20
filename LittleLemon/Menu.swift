@@ -17,8 +17,6 @@ struct Menu: View {
         VStack {
         
             HeroSection()
-            
-            Text("Menu")
 
             TextField("Search menu", text: $searchText)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -26,6 +24,15 @@ struct Menu: View {
                 .onChange(of: searchText) { _ in
                     updatePredicate()
                 }
+            
+            // Menu Breakdown Tags
+            HStack {
+                MenuTag(title: "Starters")
+                MenuTag(title: "Mains")
+                MenuTag(title: "Desserts")
+                MenuTag(title: "Drinks")
+            }
+            .padding(.vertical)
 
             List {
                 ForEach(dishes.filter { dish in
@@ -96,6 +103,19 @@ struct Menu: View {
         }
 
         task.resume()
+    }
+    
+    struct MenuTag: View {
+        let title: String
+
+        var body: some View {
+            Text(title)
+                .padding()
+                .background(Color.gray.opacity(0.2))
+                .cornerRadius(10)
+                .foregroundColor(.black)
+                .font(.headline)
+        }
     }
     
     // Function to build predicates
