@@ -51,23 +51,30 @@ struct Menu: View {
             }
         }
         .onAppear {
-            getMenuData()
+            if dishes.isEmpty {  // Only load data if there are no dishes
+                getMenuData()
+            }
         }
     }
 
     func getMenuData() {
         let persistence = PersistenceController.shared
 
-        // Clear the database before inserting new data
+        // Step 1: Clear the database before inserting new data
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Dish.fetchRequest()
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+
         do {
+            // Execute the batch delete request
             try persistence.container.viewContext.execute(deleteRequest)
+
+            // Save the context to persist the deletion
+            try persistence.container.viewContext.save()
         } catch {
             print("Error deleting previous data: \(error.localizedDescription)")
         }
 
-        // Fetch data from the API
+        // Step 2: Fetch data from the API
         guard let url = URL(string: "https://raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/menu.json") else { return }
         
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
@@ -82,15 +89,16 @@ struct Menu: View {
                 DispatchQueue.main.async {
                     let context = persistence.container.viewContext
                     
+                    // Step 3: Insert new data
                     for menuItem in decodedData.menu {
                         let newDish = Dish(context: context)
-                        newDish.id = UUID()  // ✅ Ensure unique ID
+                        newDish.id = UUID()  // Ensure unique ID
                         newDish.title = menuItem.title
                         newDish.image = menuItem.image
                         newDish.price = menuItem.price
                     }
                     
-                    // Save data after inserting
+                    // Step 4: Save the context after inserting new data
                     do {
                         try context.save()
                     } catch {
