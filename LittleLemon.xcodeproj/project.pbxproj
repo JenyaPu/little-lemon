@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		736738902D639984002ADFDA /* littlelemon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = littlelemon.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		736738902D639984002ADFDA /* LittleLemon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LittleLemon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		736738922D639984002ADFDA /* littlelemon */ = {
+		736738922D639984002ADFDA /* LittleLemon */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = littlelemon;
+			path = LittleLemon;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -32,7 +32,7 @@
 		736738872D639984002ADFDA = {
 			isa = PBXGroup;
 			children = (
-				736738922D639984002ADFDA /* littlelemon */,
+				736738922D639984002ADFDA /* LittleLemon */,
 				736738912D639984002ADFDA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -40,7 +40,7 @@
 		736738912D639984002ADFDA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				736738902D639984002ADFDA /* littlelemon.app */,
+				736738902D639984002ADFDA /* LittleLemon.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,9 +48,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7367388F2D639984002ADFDA /* littlelemon */ = {
+		7367388F2D639984002ADFDA /* LittleLemon */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7367389F2D639985002ADFDA /* Build configuration list for PBXNativeTarget "littlelemon" */;
+			buildConfigurationList = 7367389F2D639985002ADFDA /* Build configuration list for PBXNativeTarget "LittleLemon" */;
 			buildPhases = (
 				7367388C2D639984002ADFDA /* Sources */,
 				7367388D2D639984002ADFDA /* Frameworks */,
@@ -61,13 +61,13 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				736738922D639984002ADFDA /* littlelemon */,
+				736738922D639984002ADFDA /* LittleLemon */,
 			);
-			name = littlelemon;
+			name = LittleLemon;
 			packageProductDependencies = (
 			);
 			productName = littlelemon;
-			productReference = 736738902D639984002ADFDA /* littlelemon.app */;
+			productReference = 736738902D639984002ADFDA /* LittleLemon.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -85,7 +85,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 7367388B2D639984002ADFDA /* Build configuration list for PBXProject "littlelemon" */;
+			buildConfigurationList = 7367388B2D639984002ADFDA /* Build configuration list for PBXProject "LittleLemon" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -99,7 +99,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7367388F2D639984002ADFDA /* littlelemon */,
+				7367388F2D639984002ADFDA /* LittleLemon */,
 			);
 		};
 /* End PBXProject section */
@@ -316,7 +316,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7367388B2D639984002ADFDA /* Build configuration list for PBXProject "littlelemon" */ = {
+		7367388B2D639984002ADFDA /* Build configuration list for PBXProject "LittleLemon" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7367389D2D639985002ADFDA /* Debug */,
@@ -325,7 +325,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7367389F2D639985002ADFDA /* Build configuration list for PBXNativeTarget "littlelemon" */ = {
+		7367389F2D639985002ADFDA /* Build configuration list for PBXNativeTarget "LittleLemon" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				736738A02D639985002ADFDA /* Debug */,
