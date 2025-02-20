@@ -39,7 +39,14 @@ struct Menu: View {
                     searchText.isEmpty || (dish.title?.localizedStandardContains(searchText) ?? false)
                 }, id: \.self) { dish in
                     HStack {
-                        Text("\(dish.title ?? "Unknown") - \(dish.price ?? "")")
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("\(dish.title ?? "Unknown") - \(dish.price ?? "")")
+                                .font(.headline)
+                            Text(dish.descriptionText ?? "")
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
+                                .lineLimit(2)
+                        }
                         Spacer()
                         AsyncImage(url: URL(string: dish.image ?? ""))
                             .scaledToFit()
@@ -96,6 +103,7 @@ struct Menu: View {
                         newDish.title = menuItem.title
                         newDish.image = menuItem.image
                         newDish.price = menuItem.price
+                        newDish.descriptionText = menuItem.description
                     }
                     
                     // Step 4: Save the context after inserting new data
