@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct Onboarding: View {
-    // Step 1: Declare state variables
     @State private var firstName: String = ""
     @State private var lastName: String = ""
     @State private var email: String = ""
@@ -11,10 +10,13 @@ struct Onboarding: View {
         NavigationView {
             VStack {
                 // Hidden NavigationLink
-                NavigationLink(destination: Home(), isActive: $isLoggedIn) {
+                NavigationLink(destination: Home(firstName: firstName, lastName: lastName, email: email), isActive: $isLoggedIn) {
                     EmptyView()
                 }
 
+
+                HeroSection()
+                
                 // Text Fields
                 TextField("First Name", text: $firstName)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -33,9 +35,10 @@ struct Onboarding: View {
                 // Register Button
                 Button("Register") {
                     if !firstName.isEmpty, !lastName.isEmpty, isValidEmail(email) {
-                        UserDefaults.standard.set(firstName, forKey: firstName)
-                        UserDefaults.standard.set(lastName, forKey: lastName)
-                        UserDefaults.standard.set(email, forKey: email)
+                        // Store data in UserDefaults
+                        UserDefaults.standard.set(firstName, forKey: "firstName")
+                        UserDefaults.standard.set(lastName, forKey: "lastName")
+                        UserDefaults.standard.set(email, forKey: "email")
 
                         isLoggedIn = true // Navigate to Home
                     } else {

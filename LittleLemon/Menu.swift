@@ -15,24 +15,10 @@ struct Menu: View {
     
     var body: some View {
         VStack {
-            Text("Little Lemon Restaurant")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .padding(.top, 20)
-            
-            Text("Chicago")
-                .font(.title2)
-                .foregroundColor(.gray)
-                .padding(.top, 5)
-            
-            Text("Enjoy fresh and delicious meals at the heart of the city.")
-                .font(.body)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, 20)
-                .padding(.top, 10)
+        
+            HeroSection()
             
             Text("Menu")
-                .font(.largeTitle)
 
             TextField("Search menu", text: $searchText)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
